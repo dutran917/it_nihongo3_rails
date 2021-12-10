@@ -880,3 +880,155 @@ Processing by ActiveStorage::DiskController#show as PNG
 Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms | Allocations: 346)
 
 
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:58:27 +0000
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.2ms | Allocations: 272)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 74ms (Views: 63.2ms | ActiveRecord: 1.2ms | Allocations: 16803)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:58:31 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 14.1ms | Allocations: 4681)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 34ms (Views: 23.1ms | ActiveRecord: 1.4ms | Allocations: 11388)
+
+
+Started GET "/books/3" for 127.0.0.1 at 2021-12-10 09:58:33 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:63:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  [1m[36mBookReview Load (0.9ms)[0m  [1m[34mSELECT "book_reviews".* FROM "book_reviews" WHERE "book_reviews"."book_id" = ? ORDER BY created_at DESC[0m  [["book_id", 3]]
+  ↳ app/views/books/show.html.erb:35
+  Rendered books/show.html.erb within layouts/application (Duration: 62.9ms | Allocations: 23857)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 83ms (Views: 67.0ms | ActiveRecord: 4.0ms | Allocations: 32507)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--308fbded7cb66a914b2eb80498d5bdfa6d8dcd5f/fireworks.png" for 127.0.0.1 at 2021-12-10 09:58:33 +0000
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--308fbded7cb66a914b2eb80498d5bdfa6d8dcd5f", "filename"=>"fireworks"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[36m  Disk Storage (3.0ms) [0m[34mGenerated URL for file at key: 8hgth9vr4efw07l7g1bt8ksnskoy (https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowMzozMy4zNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--915eae4d0c8e6920b6aac7b4fa7113c05062afc2/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png)[0m
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowMzozMy4zNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--915eae4d0c8e6920b6aac7b4fa7113c05062afc2/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png
+Completed 302 Found in 7ms (ActiveRecord: 0.1ms | Allocations: 2177)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowMzozMy4zNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--915eae4d0c8e6920b6aac7b4fa7113c05062afc2/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:58:33 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowMzozMy4zNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--915eae4d0c8e6920b6aac7b4fa7113c05062afc2", "filename"=>"fireworks"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 420)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:58:58 +0000
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 39)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.2ms | Allocations: 4510)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:59:00 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1025)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.3ms | Allocations: 5523)
+
+
+Started GET "/books/1" for 127.0.0.1 at 2021-12-10 09:59:02 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:63:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  [1m[36mBookReview Load (0.2ms)[0m  [1m[34mSELECT "book_reviews".* FROM "book_reviews" WHERE "book_reviews"."book_id" = ? ORDER BY created_at DESC[0m  [["book_id", 1]]
+  ↳ app/views/books/show.html.erb:35
+  Rendered books/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 3404)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.7ms | Allocations: 8447)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4ae888b11b928b67911b0b756e6ef6be3afe70a5/fireworks.png" for 127.0.0.1 at 2021-12-10 09:59:02 +0000
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4ae888b11b928b67911b0b756e6ef6be3afe70a5", "filename"=>"fireworks"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: vs31le2vj0hwiwgtnofzsk1deipr (https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png)[0m
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 1793)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:59:02 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4", "filename"=>"fireworks"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 361)
+
+
+Started POST "/book_reviews" for 127.0.0.1 at 2021-12-10 09:59:05 +0000
+Processing by BookReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"kGOUxItwwWal1X5po5EKpwIifmA22jEvlxhMFMlhM/9gq7etSJQ1RkJ9/dmeFkUDztclFDtV38wg3FfbBLrveA==", "book_review"=>{"review"=>"abc", "book_id"=>"1"}, "commit"=>"Create Book review"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/book_reviews_controller.rb:27:in `block in create'
+  [1m[36mBookReview Create (0.6ms)[0m  [1m[32mINSERT INTO "book_reviews" ("book_id", "review", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 1], ["review", "abc"], ["created_at", "2021-12-10 09:59:05.653857"], ["updated_at", "2021-12-10 09:59:05.653857"]]
+  ↳ app/controllers/book_reviews_controller.rb:27:in `block in create'
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/book_reviews_controller.rb:27:in `block in create'
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/books/1
+Completed 302 Found in 16ms (ActiveRecord: 6.5ms | Allocations: 3884)
+
+
+Started GET "/books/1" for 127.0.0.1 at 2021-12-10 09:59:05 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:63:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  [1m[36mBookReview Load (0.4ms)[0m  [1m[34mSELECT "book_reviews".* FROM "book_reviews" WHERE "book_reviews"."book_id" = ? ORDER BY created_at DESC[0m  [["book_id", 1]]
+  ↳ app/views/books/show.html.erb:35
+  Rendered books/show.html.erb within layouts/application (Duration: 10.9ms | Allocations: 3419)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 24ms (Views: 20.5ms | ActiveRecord: 1.2ms | Allocations: 8468)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:59:05 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQxMDowNDowMi4zMTNaIiwicHVyIjoiYmxvYl9rZXkifX0=--e329b0891884e9c6c80ea57c2926d01ae9b842b4", "filename"=>"fireworks"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms | Allocations: 358)
+
+
