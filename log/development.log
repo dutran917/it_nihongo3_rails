@@ -1,0 +1,639 @@
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (75.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBooks (20211205091619)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "number_of_pages" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211205091619"]]
+  [1m[35m (14.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateUsers (20211205092844)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211205092844"]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveStorageTables (20211205095551)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "byte_size" bigint NOT NULL, "checksum" varchar NOT NULL, "created_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211205095551"]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddNameAndAge (20211205141234)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "name" varchar[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "age" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211205141234"]]
+  [1m[35m (9.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-12-10 09:26:02.507271"], ["updated_at", "2021-12-10 09:26:02.507271"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:26:19 +0000
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.8ms | Allocations: 385)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/ubuntu/it_nihongo3_rails/public/packs
+[Webpacker] Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-private-property-in-object.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+
+[Webpacker] Hash: bdff1afdfbe7c189d484
+Version: webpack 4.46.0
+Time: 2480ms
+Built at: 12/10/2021 9:26:23 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-a860ea931ce4c057e219.js    124 KiB  application  [emitted] [immutable]  application
+js/application-a860ea931ce4c057e219.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-a860ea931ce4c057e219.js js/application-a860ea931ce4c057e219.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 4820ms (Views: 4806.9ms | ActiveRecord: 0.0ms | Allocations: 29204)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2021-12-10 09:26:32 +0000
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.7ms | Allocations: 198)
+  Rendered devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 507)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 28.3ms | Allocations: 8394)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 54ms (Views: 36.5ms | ActiveRecord: 1.1ms | Allocations: 19507)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:26:50 +0000
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 40)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.0ms | Allocations: 3631)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2021-12-10 09:26:52 +0000
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 79)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1589)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 5373)
+
+
+Started POST "/users" for 127.0.0.1 at 2021-12-10 09:27:18 +0000
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"QloZxDpoxLMs8Y+zps/sk1xDdgFE1FukztkpaPPb27FyZ6vFHgHLxI71UCLjIGo8j6RjUlRYt62vN65gPQaBfw==", "user"=>{"name"=>"dutran", "age"=>"21", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x0000000003860a80 @tempfile=#<Tempfile:/tmp/RackMultipart20211210-907-15nggi5.png>, @original_filename="IMG_9064-removebg-preview (1).png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"IMG_9064-removebg-preview (1).png\"\r\nContent-Type: image/png\r\n">, "email"=>"ductcp@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ductcp@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "name", "age") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "ductcp@gmail.com"], ["encrypted_password", "$2a$12$QDWkeuLwfuQMcDx.Hav1IuIb2jmZGJW9o/fRdwkO5PJs2i1XO/5t2"], ["created_at", "2021-12-10 09:27:18.660729"], ["updated_at", "2021-12-10 09:27:18.660729"], ["name", "dutran"], ["age", 21]]
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "5mpnohcz8rpsldzatl5t21nyb7zs"], ["filename", "IMG_9064-removebg-preview (1).png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 180681], ["checksum", "p0muFMxJeHz8YQoonwORhA=="], ["created_at", "2021-12-10 09:27:18.746189"]]
+  [1m[36mActiveStorage::Attachment Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "avatar"], ["record_type", "User"], ["record_id", 1], ["blob_id", 1], ["created_at", "2021-12-10 09:27:18.748865"]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-10 09:27:18.751069"], ["id", 1]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+[36m  Disk Storage (2.2ms) [0m[32mUploaded file to key: 5mpnohcz8rpsldzatl5t21nyb7zs (checksum: p0muFMxJeHz8YQoonwORhA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 612c1d28-dd97-4bf3-aed4-0d73d8f74cb6) to Async(active_storage_analysis) with arguments: #<GlobalID:0x000000000422b088 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/1>>
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6] Performing ActiveStorage::AnalyzeJob (Job ID: 612c1d28-dd97-4bf3-aed4-0d73d8f74cb6) from Async(active_storage_analysis) enqueued at 2021-12-10T09:27:18Z with arguments: #<GlobalID:0x000000000409ff20 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/1>>
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/
+Completed 302 Found in 579ms (ActiveRecord: 8.3ms | Allocations: 56439)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6] [36m  Disk Storage (2.1ms) [0m[34mDownloaded file from key: 5mpnohcz8rpsldzatl5t21nyb7zs[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6]   [1m[36mActiveStorage::Blob Update (0.3ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6]   [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [612c1d28-dd97-4bf3-aed4-0d73d8f74cb6] Performed ActiveStorage::AnalyzeJob (Job ID: 612c1d28-dd97-4bf3-aed4-0d73d8f74cb6) from Async(active_storage_analysis) in 23.35ms
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:27:18 +0000
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 35)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.2ms | Allocations: 4579)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:27:21 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1352)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 23ms (Views: 16.5ms | ActiveRecord: 1.0ms | Allocations: 7331)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2021-12-10 09:27:23 +0000
+Processing by BooksController#new as HTML
+  Rendering books/new.html.erb within layouts/application
+  Rendered books/_form.html.erb (Duration: 5.1ms | Allocations: 1419)
+  Rendered books/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1748)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 43ms (Views: 30.7ms | ActiveRecord: 0.8ms | Allocations: 8791)
+
+
+Started POST "/books" for 127.0.0.1 at 2021-12-10 09:27:32 +0000
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"ENX50ak4rNZwEbIu3g0X4BKZjimAJwdAgKOEi1dbtUs73iExWIIu3PaizQMH4njMwW9GeAyRlIXA5PhrArq28g==", "book"=>{"title"=>"Doraemon", "number_of_pages"=>"123", "image"=>#<ActionDispatch::Http::UploadedFile:0x00000000046b2200 @tempfile=#<Tempfile:/tmp/RackMultipart20211210-907-vccvc3.png>, @original_filename="fireworks.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"book[image]\"; filename=\"fireworks.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Book"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Create (0.5ms)[0m  [1m[32mINSERT INTO "books" ("title", "number_of_pages", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Doraemon"], ["number_of_pages", 123], ["created_at", "2021-12-10 09:27:32.911887"], ["updated_at", "2021-12-10 09:27:32.911887"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Create (0.3ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "vs31le2vj0hwiwgtnofzsk1deipr"], ["filename", "fireworks.png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 28156], ["checksum", "bkpNF1THTogx4BtTccvmCg=="], ["created_at", "2021-12-10 09:27:32.927880"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Create (0.3ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "image"], ["record_type", "Book"], ["record_id", 1], ["blob_id", 2], ["created_at", "2021-12-10 09:27:32.931260"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Update (0.2ms)[0m  [1m[33mUPDATE "books" SET "updated_at" = ? WHERE "books"."id" = ?[0m  [["updated_at", "2021-12-10 09:27:32.934132"], ["id", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+[36m  Disk Storage (1.7ms) [0m[32mUploaded file to key: vs31le2vj0hwiwgtnofzsk1deipr (checksum: bkpNF1THTogx4BtTccvmCg==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: cf757d0b-e027-4a9d-a3f9-27b2a7457400) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00000000044cc210 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/2>>
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/books/1
+Completed 302 Found in 39ms (ActiveRecord: 7.2ms | Allocations: 13949)
+
+
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400] Performing ActiveStorage::AnalyzeJob (Job ID: cf757d0b-e027-4a9d-a3f9-27b2a7457400) from Async(active_storage_analysis) enqueued at 2021-12-10T09:27:32Z with arguments: #<GlobalID:0x00000000044a97b0 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/2>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400] [36m  Disk Storage (0.2ms) [0m[34mDownloaded file from key: vs31le2vj0hwiwgtnofzsk1deipr[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400]   [1m[36mActiveStorage::Blob Update (0.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 2]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400]   [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [cf757d0b-e027-4a9d-a3f9-27b2a7457400] Performed ActiveStorage::AnalyzeJob (Job ID: cf757d0b-e027-4a9d-a3f9-27b2a7457400) from Async(active_storage_analysis) in 22.5ms
+Started GET "/books/1" for 127.0.0.1 at 2021-12-10 09:27:33 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:15
+  Rendered books/show.html.erb within layouts/application (Duration: 8.4ms | Allocations: 2584)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 24ms (Views: 19.4ms | ActiveRecord: 1.1ms | Allocations: 7867)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4ae888b11b928b67911b0b756e6ef6be3afe70a5/fireworks.png" for 127.0.0.1 at 2021-12-10 09:27:33 +0000
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4ae888b11b928b67911b0b756e6ef6be3afe70a5", "filename"=>"fireworks"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (2.9ms) [0m[34mGenerated URL for file at key: vs31le2vj0hwiwgtnofzsk1deipr (https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMjozMy4zMTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--03458ce43beaa34982bf29ce6f8249c8183aba39/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png)[0m
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMjozMy4zMTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--03458ce43beaa34982bf29ce6f8249c8183aba39/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms | Allocations: 2175)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMjozMy4zMTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--03458ce43beaa34982bf29ce6f8249c8183aba39/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:27:33 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhkbk16TVd4bE1uWnFNR2gzYVhkbmRHNXZabnB6YXpGa1pXbHdjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMjozMy4zMTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--03458ce43beaa34982bf29ce6f8249c8183aba39", "filename"=>"fireworks"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 400)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:27:38 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 779)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.5ms | Allocations: 5208)
+
+
+Started GET "/books/1/edit" for 127.0.0.1 at 2021-12-10 09:27:43 +0000
+Processing by BooksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/edit.html.erb within layouts/application
+  Rendered books/_form.html.erb (Duration: 3.6ms | Allocations: 964)
+  Rendered books/edit.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1203)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 20ms (Views: 16.6ms | ActiveRecord: 0.4ms | Allocations: 6307)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:27:52 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 765)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.2ms | Allocations: 5197)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2021-12-10 09:27:54 +0000
+Processing by BooksController#new as HTML
+  Rendering books/new.html.erb within layouts/application
+  Rendered books/_form.html.erb (Duration: 2.3ms | Allocations: 888)
+  Rendered books/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 970)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.2ms | Allocations: 5398)
+
+
+Started POST "/books" for 127.0.0.1 at 2021-12-10 09:28:18 +0000
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"J/1Z8q4V8iFa1rdCIMQYUjWwI0JkRbK1Wt7bNN9+jeUM9oESX69wK9xlyG/5K3d+5kbrE+jzIXAamafUip+OXA==", "book"=>{"title"=>"Marvel", "number_of_pages"=>"1234", "image"=>#<ActionDispatch::Http::UploadedFile:0x0000000004529230 @tempfile=#<Tempfile:/tmp/RackMultipart20211210-907-vqukvr.png>, @original_filename="shopping-cart.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"book[image]\"; filename=\"shopping-cart.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Book"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("title", "number_of_pages", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Marvel"], ["number_of_pages", 1234], ["created_at", "2021-12-10 09:28:18.014683"], ["updated_at", "2021-12-10 09:28:18.014683"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "1ofhbqyg345mquo401nv7kzp190y"], ["filename", "shopping-cart.png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 7928], ["checksum", "uWqLTcHPnupGMhB9HewS8A=="], ["created_at", "2021-12-10 09:28:18.027392"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Create (0.3ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "image"], ["record_type", "Book"], ["record_id", 2], ["blob_id", 3], ["created_at", "2021-12-10 09:28:18.030275"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Update (0.1ms)[0m  [1m[33mUPDATE "books" SET "updated_at" = ? WHERE "books"."id" = ?[0m  [["updated_at", "2021-12-10 09:28:18.032514"], ["id", 2]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+[36m  Disk Storage (1.8ms) [0m[32mUploaded file to key: 1ofhbqyg345mquo401nv7kzp190y (checksum: uWqLTcHPnupGMhB9HewS8A==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 902d4944-b1d3-46d1-b617-d343ca7528dc) to Async(active_storage_analysis) with arguments: #<GlobalID:0x000000000415b3b0 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/3>>
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/books/2
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc] Performing ActiveStorage::AnalyzeJob (Job ID: 902d4944-b1d3-46d1-b617-d343ca7528dc) from Async(active_storage_analysis) enqueued at 2021-12-10T09:28:18Z with arguments: #<GlobalID:0x0000000004100d48 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/3>>
+Completed 302 Found in 39ms (ActiveRecord: 7.7ms | Allocations: 14138)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc] [36m  Disk Storage (0.6ms) [0m[34mDownloaded file from key: 1ofhbqyg345mquo401nv7kzp190y[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc]   [1m[36mActiveStorage::Blob Update (1.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 3]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc]   [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [902d4944-b1d3-46d1-b617-d343ca7528dc] Performed ActiveStorage::AnalyzeJob (Job ID: 902d4944-b1d3-46d1-b617-d343ca7528dc) from Async(active_storage_analysis) in 40.24ms
+Started GET "/books/2" for 127.0.0.1 at 2021-12-10 09:28:18 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:15
+  Rendered books/show.html.erb within layouts/application (Duration: 8.6ms | Allocations: 2064)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 19ms (Views: 16.0ms | ActiveRecord: 0.7ms | Allocations: 7073)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--97dcbc7a0ee1963fce0b01ea28f7e5483985daa1/shopping-cart.png" for 127.0.0.1 at 2021-12-10 09:28:18 +0000
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--97dcbc7a0ee1963fce0b01ea28f7e5483985daa1", "filename"=>"shopping-cart"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: 1ofhbqyg345mquo401nv7kzp190y (https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhNVzltYUdKeGVXY3pORFZ0Y1hWdk5EQXhiblkzYTNwd01Ua3dlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5Ob2IzQndhVzVuTFdOaGNuUXVjRzVuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkemFHOXdjR2x1WnkxallYSjBMbkJ1WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraURtbHRZV2RsTDNCdVp3WTdCbFE9IiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMzoxOC4zOTFaIiwicHVyIjoiYmxvYl9rZXkifX0=--6b9dd7e145b5e89cbcd9fa2954c7a04c74c4121f/shopping-cart.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22shopping-cart.png%22%3B+filename%2A%3DUTF-8%27%27shopping-cart.png)[0m
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhNVzltYUdKeGVXY3pORFZ0Y1hWdk5EQXhiblkzYTNwd01Ua3dlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5Ob2IzQndhVzVuTFdOaGNuUXVjRzVuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkemFHOXdjR2x1WnkxallYSjBMbkJ1WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraURtbHRZV2RsTDNCdVp3WTdCbFE9IiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMzoxOC4zOTFaIiwicHVyIjoiYmxvYl9rZXkifX0=--6b9dd7e145b5e89cbcd9fa2954c7a04c74c4121f/shopping-cart.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22shopping-cart.png%22%3B+filename%2A%3DUTF-8%27%27shopping-cart.png
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms | Allocations: 1772)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhNVzltYUdKeGVXY3pORFZ0Y1hWdk5EQXhiblkzYTNwd01Ua3dlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5Ob2IzQndhVzVuTFdOaGNuUXVjRzVuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkemFHOXdjR2x1WnkxallYSjBMbkJ1WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraURtbHRZV2RsTDNCdVp3WTdCbFE9IiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMzoxOC4zOTFaIiwicHVyIjoiYmxvYl9rZXkifX0=--6b9dd7e145b5e89cbcd9fa2954c7a04c74c4121f/shopping-cart.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22shopping-cart.png%22%3B+filename%2A%3DUTF-8%27%27shopping-cart.png" for 127.0.0.1 at 2021-12-10 09:28:18 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"shopping-cart.png\"; filename*=UTF-8''shopping-cart.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhNVzltYUdKeGVXY3pORFZ0Y1hWdk5EQXhiblkzYTNwd01Ua3dlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5Ob2IzQndhVzVuTFdOaGNuUXVjRzVuSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkemFHOXdjR2x1WnkxallYSjBMbkJ1WndZN0JsUTZFV052Ym5SbGJuUmZkSGx3WlVraURtbHRZV2RsTDNCdVp3WTdCbFE9IiwiZXhwIjoiMjAyMS0xMi0xMFQwOTozMzoxOC4zOTFaIiwicHVyIjoiYmxvYl9rZXkifX0=--6b9dd7e145b5e89cbcd9fa2954c7a04c74c4121f", "filename"=>"shopping-cart"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:28:20 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 886)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.4ms | Allocations: 5317)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:34:58 +0000
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.4.1) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.4.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.1) lib/action_dispatch/middleware/host_authorization.rb:76:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.0.4.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.10) lib/puma/configuration.rb:228:in `call'
+puma (4.3.10) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.10) lib/puma/server.rb:472:in `process_client'
+puma (4.3.10) lib/puma/server.rb:328:in `block in run'
+puma (4.3.10) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/rails/actions" for 127.0.0.1 at 2021-12-10 09:35:08 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDetail (20211210093018)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "books" ADD "detail" text[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211210093018"]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2021-12-10 09:35:08 +0000
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.5ms | Allocations: 157)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 87ms (Views: 73.2ms | ActiveRecord: 1.2ms | Allocations: 15272)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:35:12 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 27.6ms | Allocations: 4565)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 49ms (Views: 39.0ms | ActiveRecord: 1.8ms | Allocations: 10526)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2021-12-10 09:35:16 +0000
+Processing by BooksController#new as HTML
+  Rendering books/new.html.erb within layouts/application
+  Rendered books/_form.html.erb (Duration: 20.7ms | Allocations: 3999)
+  Rendered books/new.html.erb within layouts/application (Duration: 21.9ms | Allocations: 4331)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.1ms | Allocations: 8904)
+
+
+Started POST "/books" for 127.0.0.1 at 2021-12-10 09:35:42 +0000
+Processing by BooksController#create as HTML
+  Parameters: {"authenticity_token"=>"Jlm95DWJ+w8c4afg7PYsuffGTS1sArX59zd9FD6vDFsNUmUExDN5BZpS2M01GUOVJDCFfOC0Jjy3cAH0a04P4g==", "book"=>{"title"=>"ABC", "number_of_pages"=>"123", "detail"=>"A book about life of Bao chan", "image"=>#<ActionDispatch::Http::UploadedFile:0x00007fe1001f97d8 @tempfile=#<Tempfile:/tmp/RackMultipart20211210-1688-3qteoe.png>, @original_filename="fireworks.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"book[image]\"; filename=\"fireworks.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create Book"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Create (0.5ms)[0m  [1m[32mINSERT INTO "books" ("title", "number_of_pages", "created_at", "updated_at", "detail") VALUES (?, ?, ?, ?, ?)[0m  [["title", "ABC"], ["number_of_pages", 123], ["created_at", "2021-12-10 09:35:42.925347"], ["updated_at", "2021-12-10 09:35:42.925347"], ["detail", "A book about life of Bao chan"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "8hgth9vr4efw07l7g1bt8ksnskoy"], ["filename", "fireworks.png"], ["content_type", "image/png"], ["metadata", "{\"identified\":true}"], ["byte_size", 28156], ["checksum", "bkpNF1THTogx4BtTccvmCg=="], ["created_at", "2021-12-10 09:35:42.988061"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mActiveStorage::Attachment Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "image"], ["record_type", "Book"], ["record_id", 3], ["blob_id", 4], ["created_at", "2021-12-10 09:35:42.990617"]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[36mBook Update (0.1ms)[0m  [1m[33mUPDATE "books" SET "updated_at" = ? WHERE "books"."id" = ?[0m  [["updated_at", "2021-12-10 09:35:42.992728"], ["id", 3]]
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/books_controller.rb:27:in `block in create'
+[36m  Disk Storage (2.3ms) [0m[32mUploaded file to key: 8hgth9vr4efw07l7g1bt8ksnskoy (checksum: bkpNF1THTogx4BtTccvmCg==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00000000042ebae0 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/4>>
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/books/3
+Completed 302 Found in 103ms (ActiveRecord: 8.3ms | Allocations: 34531)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8] Performing ActiveStorage::AnalyzeJob (Job ID: 0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8) from Async(active_storage_analysis) enqueued at 2021-12-10T09:35:43Z with arguments: #<GlobalID:0x00000000041c5bc0 @uri=#<URI::GID gid://thefirstrails/ActiveStorage::Blob/4>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8] [36m  Disk Storage (0.2ms) [0m[34mDownloaded file from key: 8hgth9vr4efw07l7g1bt8ksnskoy[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8]   [1m[36mActiveStorage::Blob Update (2.3ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 4]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8]   [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8] Performed ActiveStorage::AnalyzeJob (Job ID: 0a6b04fd-2e2c-49ce-a55f-b04c0ef071d8) from Async(active_storage_analysis) in 25.45ms
+Started GET "/books/3" for 127.0.0.1 at 2021-12-10 09:35:43 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  Rendered books/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 2623)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 22ms (Views: 17.3ms | ActiveRecord: 1.0ms | Allocations: 7959)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--308fbded7cb66a914b2eb80498d5bdfa6d8dcd5f/fireworks.png" for 127.0.0.1 at 2021-12-10 09:35:43 +0000
+Processing by ActiveStorage::BlobsController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--308fbded7cb66a914b2eb80498d5bdfa6d8dcd5f", "filename"=>"fireworks"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[36m  Disk Storage (2.3ms) [0m[34mGenerated URL for file at key: 8hgth9vr4efw07l7g1bt8ksnskoy (https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png)[0m
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 2165)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:35:43 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd", "filename"=>"fireworks"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 400)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:35:46 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1032)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.5ms | Allocations: 5488)
+
+
+Started GET "/books/3" for 127.0.0.1 at 2021-12-10 09:35:48 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  Rendered books/show.html.erb within layouts/application (Duration: 7.7ms | Allocations: 2061)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 24ms (Views: 19.5ms | ActiveRecord: 0.8ms | Allocations: 7034)
+
+
+Started GET "/books/3/edit" for 127.0.0.1 at 2021-12-10 09:35:52 +0000
+Processing by BooksController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/edit.html.erb within layouts/application
+  Rendered books/_form.html.erb (Duration: 3.7ms | Allocations: 1147)
+  Rendered books/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1390)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 20ms (Views: 16.6ms | ActiveRecord: 0.4ms | Allocations: 6473)
+
+
+Started PATCH "/books/3" for 127.0.0.1 at 2021-12-10 09:35:54 +0000
+Processing by BooksController#update as HTML
+  Parameters: {"authenticity_token"=>"3ZgXrt+ULkB+ItyUoMsG2la2KhuBNK7slBgGbnCSJx64LtGhXkEbCvdvN0YJkIWn19wtS4la1R+2sM+DrHiBIw==", "book"=>{"title"=>"ABC", "number_of_pages"=>"123", "detail"=>"A book about life of Bao chan"}, "commit"=>"Update Book", "id"=>"3"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+Redirected to https://localhost-ductcp-1.paiza-user-free.cloud:3000/books/3
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms | Allocations: 1298)
+
+
+Started GET "/books/3" for 127.0.0.1 at 2021-12-10 09:35:54 +0000
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:62:in `set_book'
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Book"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:17
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/books/show.html.erb:18
+  Rendered books/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 2069)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 19ms (Views: 16.2ms | ActiveRecord: 0.7ms | Allocations: 7050)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd/fireworks.png?content_type=image%2Fpng&disposition=inline%3B+filename%3D%22fireworks.png%22%3B+filename%2A%3DUTF-8%27%27fireworks.png" for 127.0.0.1 at 2021-12-10 09:35:54 +0000
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"content_type"=>"image/png", "disposition"=>"inline; filename=\"fireworks.png\"; filename*=UTF-8''fireworks.png", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPR2huZEdnNWRuSTBaV1ozTURkc04yY3hZblE0YTNOdWMydHZlUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1acGNtVjNiM0pyY3k1d2JtY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlpwY21WM2IzSnJjeTV3Ym1jR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnNXBiV0ZuWlM5d2JtY0dPd1pVIiwiZXhwIjoiMjAyMS0xMi0xMFQwOTo0MDo0My40MzNaIiwicHVyIjoiYmxvYl9rZXkifX0=--9867824c75edfcf1391a188ab0487f32db2c0ecd", "filename"=>"fireworks"}
+Completed 304 Not Modified in 6ms (ActiveRecord: 0.0ms | Allocations: 358)
+
+
+Started GET "/books" for 127.0.0.1 at 2021-12-10 09:35:56 +0000
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/views/books/index.html.erb:15
+  Rendered books/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1014)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:14
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.2ms | Allocations: 5436)
+
+
